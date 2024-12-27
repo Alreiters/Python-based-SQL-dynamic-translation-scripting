@@ -1,19 +1,21 @@
+# Python based SQL dynamic translation scripting
 
 
 
-"""
-读取DB2数据表格，并转译为Excel
-@Author: Jianxi Peng(Alreitetrs Pourton)
-@Date: 2024.02.02
-"""
+
+        '''
+        读取DB2数据表格，并转译为Excel
+        @Author: Jianxi Peng(Alreitetrs Pourton)
+        @Date: 2024.02.02
+        '''
 
 
 
-import openpyxl
-import re
+        import openpyxl
+        import re
 
 
-if __name__ == '__main__':
+        if __name__ == '__main__':
 
 
 
