@@ -5,7 +5,7 @@
 
         '''
         读取DB2数据表格，并转译为Excel
-        @Author: J. X.  PENG (Alreitetrs Pourton)
+        @Author: J. X. PENG (Alreitetrs Pourton)
         @Date: 2024.02.02
         '''
 
