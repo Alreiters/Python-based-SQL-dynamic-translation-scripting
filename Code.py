@@ -38,12 +38,12 @@ try:
     text = content[start_pos:end_pos]
 
 
-    # 提取字段英文名
+    # 提取****名
     # 使用正则表达式匹配双引号内的内容
     matches = re.findall(r'"([^"]*)"', text)
 
 
-    # 提取字段类型
+    # 提取**类型
     # 提取第一个左括号的位置
     matchbracket = re.search(r'\(', content[start_pos:end_pos])
     # 定义 start_pos2
@@ -60,7 +60,7 @@ try:
     matches2 = [re.findall(r'\b[A-Za-z]+\b', item)[0] for item in split_text3]
 
 
-    # 提取字段长度
+    # 提取**长度
     # 初始化一个空列表来存储结果
     matches3 = []
     # 首先，按逗号分隔文本字符串
@@ -88,7 +88,7 @@ try:
     text_new = content[start_pos2:end_pos2]
 
 
-    # 提取主键
+    # 提取**
     # 使用正则表达式匹配双引号内的内容
     matches4_ = re.findall(r'"([^"]*)"', text_new)
     # 去除最后两项(最后两项为文件名）
@@ -97,20 +97,20 @@ try:
     matches4 = ['true' if match in matches4_ else 'false' for match in matches[2:-2]]
 
 
-    # 提取是否必填
+    # 提取是否**
     # 判断每一项是否有“NOT NULL"
     matches5 = ["true" if "NOT NULL" in item else "false" for item in split_text2]
 
 
-    # 提取字段密级（均为“3”）
+    # 提取****（均为“3”）
     matches6 = [3 for _ in matches[2:-2]]
 
 
-    # 提取字段脱敏（均为“0”）
+    # 提取****（均为“0”）
     matches7 = [0 for _ in matches[2:-2]]
 
 
-    # 提取分区（均为“false”）
+    # 提取**（均为“false”）
     matches8 = ["false" for _ in matches[2:-2]]
 
 
@@ -121,7 +121,7 @@ try:
     worksheet = workbook.active
 
 
-    # 写入字段英文名
+    # 写入****名
     # 写入前两行,因为这两项为文件名（注意：这里使用正确的行索引1和2）
     for i in range(1, 3):  # Excel的行索引从1开始
         worksheet.cell(row=i, column=1, value=matches[i - 1])  # 减1以匹配matches的索引
@@ -130,55 +130,55 @@ try:
         worksheet.cell(row=idx, column=1, value=match)
 
 
-    # 写入字段类型
+    # 写入**类型
     for idx2, match2 in enumerate(matches2, start=10):
         worksheet.cell(row=idx2, column=3, value=match2)
 
 
-    # 写入字段类型
+    # 写入**类型
     for idx3, match3 in enumerate(matches3, start=10):
         worksheet.cell(row=idx3, column=4, value=match3)
 
 
-    # 写入主键
+    # 写入**
     for idx4, match4 in enumerate(matches4, start=10):
         worksheet.cell(row=idx4, column=5, value=match4)
 
 
-    # 写入是否必填
+    # 写入****
     for idx5, match5 in enumerate(matches5, start=10):
         worksheet.cell(row=idx5, column=7, value=match5)
 
 
-    # 写入字段密级
+    # 写入****
     for idx6, match6 in enumerate(matches6, start=10):
         worksheet.cell(row=idx6, column=8, value=match6)
 
 
-    # 写入字段脱敏
+    # 写入****
     for idx7, match7 in enumerate(matches7, start=10):
         worksheet.cell(row=idx7, column=9, value=match7)
 
 
-    # 写入分区
+    # 写入**
     for idx8, match8 in enumerate(matches8, start=10):
         worksheet.cell(row=idx8, column=12, value=match8)
 
 
-    # 填写表头信息
+    # 填写**信息
     worksheet.cell(row=5, column=1, value=file_name)
     worksheet.cell(row=5, column=6, value=file_name)
     worksheet.cell(row=5, column=7, value=file_name)
 
 
-    # 在最后一行填入分区信息
+    # 在最后一行填入**信息
     # 判断表格有几项
     number = len(matches)
     # 减去头尾4项文件名，从第10行开始写入
     number = number-4+10
     # 写入各列固定信息
     worksheet.cell(row=number, column=1, value="dt")
-    worksheet.cell(row=number, column=2, value="分区日期")
+    worksheet.cell(row=number, column=2, value="**日期")
     worksheet.cell(row=number, column=3, value="string")
     worksheet.cell(row=number, column=4, value="10")
     worksheet.cell(row=number, column=5, value="true")
